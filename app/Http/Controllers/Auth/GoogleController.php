@@ -40,3 +40,10 @@ class GoogleController extends Controller
             $user = User::where('google_id', $googleUser->getId())->first();
             
             if (!$user) {
+                $user = User::where('email', $googleUser->getEmail())->first();
+                
+                if ($user) {
+                    $user->update([
+                        'google_id' => $googleUser->getId(),
+                    ]);
+                } else {
