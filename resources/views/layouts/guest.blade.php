@@ -82,3 +82,10 @@
                .drop-shadow-xl {
                    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
                }
+                   background: rgba(255, 255, 255, 0.1);
+                   box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+               }
+               
+               .drop-shadow-xl {
+                   filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+               }
