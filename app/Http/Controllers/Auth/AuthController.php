@@ -40,3 +40,10 @@ class AuthController extends Controller
             'ip_address' => $request->ip(),
             'created_at' => now(),
             'updated_at' => now(),
+        ]);
+
+        if ($user->is_admin) {
+            return redirect('/admin/dashboard');
+        }
+
+        if ($user->isSuspended()) {
