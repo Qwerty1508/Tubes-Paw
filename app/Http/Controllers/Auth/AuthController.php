@@ -47,3 +47,10 @@ class AuthController extends Controller
         }
 
         if ($user->isSuspended()) {
+            return redirect('/')->with('warning', 'Peringatan: Akun Anda sedang dalam status suspend karena terdeteksi adanya aktivitas yang melanggar ketentuan layanan. Harap perbaiki perilaku Anda atau akun akan diblokir permanen.');
+        }
+
+        return redirect('/');
+    }
+
+    public function logout(Request $request)
