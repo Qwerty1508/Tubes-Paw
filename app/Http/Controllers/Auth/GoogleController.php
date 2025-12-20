@@ -33,3 +33,10 @@ class GoogleController extends Controller
             $email = $googleUser->getEmail();
             $emailDomain = substr(strrchr($email, "@"), 1);
             
+            if (!in_array(strtolower($emailDomain), $allowedDomains)) {
+                return redirect()->route('login')->with('error', 'Maaf, hanya email dengan domain ' . implode(', ', $allowedDomains) . ' yang diizinkan untuk mendaftar.');
+            }
+            
+            $user = User::where('google_id', $googleUser->getId())->first();
+            
+            if (!$user) {
