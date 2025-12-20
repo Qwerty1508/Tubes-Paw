@@ -47,3 +47,10 @@
                             
                             <img src="https://res.cloudinary.com/dh9ysyfit/image/upload/v1765978302/IMG_7839_loero4.png" 
                                  alt="Peringatan Akun" 
+                                 class="img-fluid drop-shadow-xl" 
+                                 style="border-radius: 0; max-height: 90vh; object-fit: contain; pointer-events: none; -webkit-user-drag: none; user-select: none;"
+                                 draggable="false"
+                                 oncontextmenu="return false;">
+                            
+                            <button type="button" class="btn-royal-click-area" data-bs-dismiss="modal" aria-label="Saya Mengerti"></button>
+                            
