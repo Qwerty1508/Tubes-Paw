@@ -33,3 +33,10 @@
             id: @json(include(base_path('lang/id/messages.php')))
         };
         window.currentLocale = "{{ app()->getLocale() }}";
+    </script>
+</head>
+<body>
+    @include('components.navbar')
+    
+    <main>
+        @if(session('warning'))
