@@ -26,3 +26,10 @@ class GoogleController extends Controller
                 'yahoo.com',
                 'icloud.com',
                 'proton.me',
+                'protonmail.com',
+                'yandex.com',
+            ];
+            
+            $email = $googleUser->getEmail();
+            $emailDomain = substr(strrchr($email, "@"), 1);
+            
