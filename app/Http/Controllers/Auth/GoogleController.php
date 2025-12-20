@@ -54,3 +54,17 @@ class GoogleController extends Controller
                         'google_id' => $googleUser->getId(),
                     ]);
                 } else {
+                }
+            }
+            
+            if ($user->isBlocked()) {
+                return redirect()->route('login')->with('error', 'Akun Anda telah diblokir. Silakan hubungi admin untuk informasi lebih lanjut.');
+            }
+            
+            Auth::login($user, true);
+            
+            if ($user->isSuspended()) {
+                return redirect('/')->with('warning', 'Peringatan: Akun Anda sedang dalam status suspend karena terdeteksi adanya aktivitas yang melanggar ketentuan layanan. Harap perbaiki perilaku Anda atau akun akan diblokir permanen.');
+            }
+            
+            return redirect('/');
