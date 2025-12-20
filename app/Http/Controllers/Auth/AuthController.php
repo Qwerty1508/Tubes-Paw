@@ -54,3 +54,10 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request)
+    {
+        if (Auth::check()) {
+            \DB::table('activity_logs')->insert([
+                'user_id' => Auth::id(),
+                'action' => 'logout',
+                'description' => 'User logged out',
+                'ip_address' => $request->ip(),
