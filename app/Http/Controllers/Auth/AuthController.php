@@ -32,3 +32,11 @@ class AuthController extends Controller
         }
 
         Auth::login($user, $request->boolean('remember'));
+
+        \DB::table('activity_logs')->insert([
+            'user_id' => $user->id,
+            'action' => 'login',
+            'description' => 'User logged in',
+            'ip_address' => $request->ip(),
+            'created_at' => now(),
+            'updated_at' => now(),
