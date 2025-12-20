@@ -11,3 +11,11 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'timezone' => 'UTC',
+
+    'locale' => env('APP_LOCALE', 'en'),
+
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+
+    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+
+    'cipher' => 'AES-256-CBC',
