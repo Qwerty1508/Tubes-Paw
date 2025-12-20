@@ -47,3 +47,10 @@ class User extends Authenticatable
     public function isSuspended(): bool
     {
         return $this->status === 'suspended';
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === 'active' || $this->status === null;
+    }
+}
