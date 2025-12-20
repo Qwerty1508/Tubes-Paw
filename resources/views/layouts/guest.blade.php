@@ -68,3 +68,10 @@
                    width: 35%;
                    height: 12%;
                    background: transparent;
+                   border: none;
+                   cursor: pointer;
+                   border-radius: 50px;
+                   z-index: 10;
+               }
+
+               .btn-royal-click-area:hover {
