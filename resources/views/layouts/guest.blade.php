@@ -26,3 +26,10 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ time() }}">
     
     @stack('styles')
+    
+    <script>
+        window.translations = {
+            en: @json(include(base_path('lang/en/messages.php'))),
+            id: @json(include(base_path('lang/id/messages.php')))
+        };
+        window.currentLocale = "{{ app()->getLocale() }}";
