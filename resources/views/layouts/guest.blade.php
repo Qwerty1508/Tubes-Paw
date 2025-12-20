@@ -40,3 +40,10 @@
     
     <main>
         @if(session('warning'))
+            <div class="modal fade" id="warningModal" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" style="max-width: 650px;">
+                    <div class="modal-content border-0 bg-transparent" style="overflow: visible !important; box-shadow: none !important;">
+                        <div class="position-relative text-center d-flex justify-content-center">
+                            
+                            <img src="https://res.cloudinary.com/dh9ysyfit/image/upload/v1765978302/IMG_7839_loero4.png" 
+                                 alt="Peringatan Akun" 
