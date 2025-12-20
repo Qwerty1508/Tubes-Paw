@@ -47,3 +47,10 @@ class GoogleController extends Controller
                         'google_id' => $googleUser->getId(),
                     ]);
                 } else {
+                $user = User::where('email', $googleUser->getEmail())->first();
+                
+                if ($user) {
+                    $user->update([
+                        'google_id' => $googleUser->getId(),
+                    ]);
+                } else {
