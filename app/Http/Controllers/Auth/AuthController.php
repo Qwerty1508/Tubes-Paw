@@ -18,3 +18,11 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return back()->withErrors([
+                'email' => 'Email atau password salah.',
+            ])->withInput($request->only('email'));
+        }
+
+        if ($user->isBlocked()) {
