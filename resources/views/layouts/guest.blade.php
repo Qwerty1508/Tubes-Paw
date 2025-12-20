@@ -61,3 +61,10 @@
 
             <style>
                .btn-royal-click-area {
+                   position: absolute;
+                   bottom: 10%; 
+                   left: 50%;
+                   transform: translateX(-50%);
+                   width: 35%;
+                   height: 12%;
+                   background: transparent;
