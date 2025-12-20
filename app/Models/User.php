@@ -40,3 +40,10 @@ class User extends Authenticatable
     }
 
     public function isBlocked(): bool
+    {
+        return $this->status === 'blocked';
+    }
+
+    public function isSuspended(): bool
+    {
+        return $this->status === 'suspended';
