@@ -54,3 +54,10 @@
                             
                             <button type="button" class="btn-royal-click-area" data-bs-dismiss="modal" aria-label="Saya Mengerti"></button>
                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+               .btn-royal-click-area {
