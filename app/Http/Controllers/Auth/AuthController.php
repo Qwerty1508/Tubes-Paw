@@ -61,3 +61,10 @@ class AuthController extends Controller
                 'action' => 'logout',
                 'description' => 'User logged out',
                 'ip_address' => $request->ip(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+        Auth::logout();
+        $request->session()->invalidate();
