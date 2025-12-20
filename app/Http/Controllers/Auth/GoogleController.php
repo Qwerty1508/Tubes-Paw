@@ -19,3 +19,10 @@ class GoogleController extends Controller
         try {
             $googleUser = Socialite::driver('google')->user();
             
+            $allowedDomains = [
+                'gmail.com',
+                'outlook.com',
+                'hotmail.com',
+                'yahoo.com',
+                'icloud.com',
+                'proton.me',
