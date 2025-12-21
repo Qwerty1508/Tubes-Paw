@@ -96,3 +96,10 @@
                                         @error('email')
                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="password" class="form-label" data-i18n="password">{{ __('messages.password') }}</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-end-0">
