@@ -75,3 +75,10 @@
                                             </div>
                                             @error('phone')
                                                 <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label" data-i18n="email">{{ __('messages.email') }}</label>
+                                        <div class="input-group">
