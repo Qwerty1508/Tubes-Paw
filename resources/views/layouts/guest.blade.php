@@ -130,4 +130,11 @@
             }
         });
     </script>
-    
+
+    <script src="{{ asset('js/cursor.js') }}"></script>
+    <script>
+        // Ultimate UI Protection (Disable Right Click, Drag, Select, Inspect)
+        document.addEventListener('dragstart', e => e.preventDefault());
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('selectstart', e => e.preventDefault());
+        
