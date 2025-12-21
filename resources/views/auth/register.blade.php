@@ -186,3 +186,11 @@
                                                 <small data-i18n="member_discount">{{ __('messages.member_discount') }}</small>
                                             </div>
                                         </div>
+                                    
+                                        <div class="col-6">
+                                            <div class="glass-effect rounded-3 p-3 text-center">
+                                                <i class="bi bi-gift fs-2 mb-2 d-block" style="color: #C89B3A;"></i>
+                                                <small data-i18n="special_promo">{{ __('messages.special_promo') }}</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
