@@ -103,3 +103,10 @@
                                             <label for="password" class="form-label" data-i18n="password">{{ __('messages.password') }}</label>
                                             <div class="input-group">
                                                 <span class="input-group-text bg-light border-end-0">
+                                                    <i class="bi bi-lock text-muted"></i>
+                                                </span>
+                                                <input type="password" 
+                                                       class="form-control border-start-0 border-end-0 ps-0 @error('password') is-invalid @enderror" 
+                                                       id="password" 
+                                                       name="password" 
+                                                       placeholder="{{ __('messages.password_min_placeholder') }}" data-i18n="password_min_placeholder"
