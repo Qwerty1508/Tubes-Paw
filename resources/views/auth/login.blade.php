@@ -47,3 +47,10 @@
                                 <div class="text-center mb-5">
                                     <a href="{{ url('/') }}" class="text-decoration-none">
                                         <h3 class="font-heading text-burgundy mb-2">
+                                            Culinaire<span class="text-gold">.</span>
+                                        </h3>
+                                    </a>
+                                    <p class="text-muted" data-i18n="login_to_account">{{ __('messages.login_to_account') }}</p>
+                                </div>
+                                
+                                <a href="{{ route('auth.google') }}" class="btn btn-outline-secondary w-100 py-3 mb-4 d-flex align-items-center justify-content-center gap-2">
