@@ -145,3 +145,10 @@
                                                    required>
                                             <label class="form-check-label text-muted small" for="terms">
                                                 <span data-i18n="i_agree">{{ __('messages.i_agree') }}</span> 
+                                                <a href="#" class="text-primary" data-i18n="terms_conditions">{{ __('messages.terms_conditions') }}</a> <span data-i18n="and">{{ __('messages.and') }}</span> 
+                                                <a href="#" class="text-primary" data-i18n="privacy_policy">{{ __('messages.privacy_policy') }}</a>
+                                            </label>
+                                        </div>
+                                        @error('terms')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
