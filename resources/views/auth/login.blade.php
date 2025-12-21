@@ -131,3 +131,10 @@
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember">
                                             <label class="form-check-label text-muted" for="remember" data-i18n="remember_me">
                                                 {{ __('messages.remember_me') }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary w-100 py-3 mb-4">
+                                        <i class="bi bi-box-arrow-in-right me-2"></i><span data-i18n="login">{{ __('messages.login') }}</span>
+                                    </button>
