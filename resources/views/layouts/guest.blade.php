@@ -89,3 +89,10 @@
                .drop-shadow-xl {
                    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
                }
+                });
+            </script>
+        @endif
+        
+        @yield('content')
+    </main>
+    
