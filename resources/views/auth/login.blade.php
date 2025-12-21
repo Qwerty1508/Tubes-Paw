@@ -124,3 +124,10 @@
                                         @error('password')
                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                            <label class="form-check-label text-muted" for="remember" data-i18n="remember_me">
+                                                {{ __('messages.remember_me') }}
