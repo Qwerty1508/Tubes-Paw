@@ -47,3 +47,10 @@
                                                 <span class="input-group-text bg-light border-end-0">
                                                     <i class="bi bi-person text-muted"></i>
                                                 </span>
+                                                <input type="text" 
+                                                       class="form-control border-start-0 ps-0 @error('name') is-invalid @enderror" 
+                                                       id="name" 
+                                                       name="name" 
+                                                       value="{{ old('name') }}"
+                                                       placeholder="{{ __('messages.name_placeholder') }}" data-i18n="name_placeholder"
+                                                       required>
