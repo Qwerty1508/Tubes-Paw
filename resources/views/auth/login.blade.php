@@ -89,3 +89,10 @@
                                             <input type="email" 
                                                    class="form-control border-start-0 ps-0 @error('email') is-invalid @enderror" 
                                                    id="email" 
+                                                   name="email" 
+                                                   value="{{ old('email') }}"
+                                                   placeholder="{{ __('messages.email_placeholder') }}" data-i18n="email_placeholder"
+                                                   required 
+                                                   autofocus>
+                                        </div>
+                                        @error('email')
