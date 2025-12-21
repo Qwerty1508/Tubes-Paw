@@ -152,3 +152,10 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
+@endsection
+
+@push('scripts')
+<script>
+    const togglePassword = document.getElementById('togglePassword');
