@@ -40,3 +40,10 @@
                                     </ul>
                                 </div>
                             </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center mb-5">
+                                    <a href="{{ url('/') }}" class="text-decoration-none">
+                                        <h3 class="font-heading text-burgundy mb-2">
