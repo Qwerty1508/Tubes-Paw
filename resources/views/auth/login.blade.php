@@ -26,3 +26,10 @@
                                             <span data-i18n="login_benefit_1">{{ __('messages.login_benefit_1') }}</span>
                                         </li>
                                         <li class="d-flex align-items-center mb-3">
+                                            <i class="bi bi-check-circle-fill fs-5 me-3" style="color: #C89B3A;"></i>
+                                            <span data-i18n="login_benefit_2">{{ __('messages.login_benefit_2') }}</span>
+                                        </li>
+                                        <li class="d-flex align-items-center mb-3">
+                                            <i class="bi bi-check-circle-fill fs-5 me-3" style="color: #C89B3A;"></i>
+                                            <span data-i18n="login_benefit_3">{{ __('messages.login_benefit_3') }}</span>
+                                        </li>
