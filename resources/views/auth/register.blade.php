@@ -61,3 +61,10 @@
                                         </div>
                                         
                                         <div class="col-md-6 mb-3">
+                                            <label for="phone" class="form-label" data-i18n="phone_number">{{ __('messages.phone_number') }}</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-end-0">
+                                                    <i class="bi bi-phone text-muted"></i>
+                                                </span>
+                                                <input type="tel" 
+                                                       class="form-control border-start-0 ps-0 @error('phone') is-invalid @enderror" 
