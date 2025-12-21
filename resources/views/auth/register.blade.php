@@ -124,3 +124,10 @@
                                             <label for="password_confirmation" class="form-label" data-i18n="confirm_password">{{ __('messages.confirm_password') }}</label>
                                             <div class="input-group">
                                                 <span class="input-group-text bg-light border-end-0">
+                                                    <i class="bi bi-lock-fill text-muted"></i>
+                                                </span>
+                                                <input type="password" 
+                                                       class="form-control border-start-0 ps-0" 
+                                                       id="password_confirmation" 
+                                                       name="password_confirmation" 
+                                                       placeholder="{{ __('messages.password_repeat_placeholder') }}" data-i18n="password_repeat_placeholder"
