@@ -117,3 +117,10 @@
                                             </div>
                                             @error('password')
                                                 <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-3">
+                                            <label for="password_confirmation" class="form-label" data-i18n="confirm_password">{{ __('messages.confirm_password') }}</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-end-0">
