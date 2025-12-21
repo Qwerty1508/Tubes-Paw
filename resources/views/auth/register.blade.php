@@ -138,3 +138,10 @@
                                     
                                     <div class="mb-4">
                                         <div class="form-check">
+                                            <input class="form-check-input @error('terms') is-invalid @enderror" 
+                                                   type="checkbox" 
+                                                   name="terms" 
+                                                   id="terms" 
+                                                   required>
+                                            <label class="form-check-label text-muted small" for="terms">
+                                                <span data-i18n="i_agree">{{ __('messages.i_agree') }}</span> 
