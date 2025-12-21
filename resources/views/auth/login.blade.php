@@ -19,3 +19,10 @@
                                     </h2>
                                     <p class="lead opacity-75 mb-4" data-i18n="login_desc">
                                         {{ __('messages.login_desc') }}
+                                    </p>
+                                    <ul class="list-unstyled">
+                                        <li class="d-flex align-items-center mb-3">
+                                            <i class="bi bi-check-circle-fill fs-5 me-3" style="color: #C89B3A;"></i>
+                                            <span data-i18n="login_benefit_1">{{ __('messages.login_benefit_1') }}</span>
+                                        </li>
+                                        <li class="d-flex align-items-center mb-3">
