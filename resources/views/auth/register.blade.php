@@ -12,3 +12,10 @@
                         <div class="col-lg-6 order-lg-1 order-2">
                             <div class="p-5">
                                 <div class="text-center mb-4">
+                                    <a href="{{ url('/') }}" class="text-decoration-none">
+                                        <h3 class="font-heading text-burgundy mb-2">
+                                            Culinaire<span class="text-gold">.</span>
+                                        </h3>
+                                    </a>
+                                    <p class="text-muted" data-i18n="create_account">{{ __('messages.create_account') }}</p>
+                                </div>
