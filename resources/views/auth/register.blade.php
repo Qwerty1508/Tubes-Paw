@@ -201,3 +201,10 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="glass-effect rounded-3 p-3 text-center">
+                                                <i class="bi bi-calendar-heart fs-2 mb-2 d-block" style="color: #C89B3A;"></i>
+                                                <small data-i18n="priority_booking">{{ __('messages.priority_booking') }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
