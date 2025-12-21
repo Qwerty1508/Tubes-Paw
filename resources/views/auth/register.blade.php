@@ -173,3 +173,10 @@
                                  style="background: linear-gradient(135deg, rgba(12, 42, 54, 0.95), rgba(12, 42, 54, 0.85)), 
                                         url('https://res.cloudinary.com/dh9ysyfit/image/fetch/w_800,h_1000,c_fill,f_auto,q_auto/https://images.unsplash.com/photo-1552566626-52f8b828add9') center/cover;">
                                 <div class="p-5 d-flex flex-column justify-content-center h-100 text-white">
+                                    <h2 class="display-6 fw-bold text-white mb-4" data-i18n="join_us">
+                                        {{ __('messages.join_us') }}
+                                    </h2>
+                                    <p class="lead opacity-75 mb-4" data-i18n="join_desc">
+                                        {{ __('messages.join_desc') }}
+                                    </p>
+                                    
