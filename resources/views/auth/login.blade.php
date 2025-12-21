@@ -96,3 +96,10 @@
                                                    autofocus>
                                         </div>
                                         @error('email')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <label for="password" class="form-label mb-0" data-i18n="password">{{ __('messages.password') }}</label>
