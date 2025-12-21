@@ -152,3 +152,10 @@
                                         @error('terms')
                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary w-100 py-3 mb-4">
+                                        <i class="bi bi-person-plus me-2"></i><span data-i18n="register_now">{{ __('messages.register_now') }}</span>
+                                    </button>
+                                </form>
+                                
