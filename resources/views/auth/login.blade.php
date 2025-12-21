@@ -145,3 +145,10 @@
                                     <a href="{{ route('register') ?? url('/register') }}" class="text-primary fw-semibold" data-i18n="register_now">
                                         {{ __('messages.register_now') }}
                                     </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
