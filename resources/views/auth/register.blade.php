@@ -33,3 +33,17 @@
                                 <div class="text-center my-4 position-relative">
                                     <hr class="my-0">
                                     <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small" data-i18n="register_with_email">
+                                        {{ __('messages.register_with_email') }}
+                                    </span>
+                                </div>
+                                
+                                <form method="POST" action="{{ route('register') ?? '#' }}">
+                                    @csrf
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="name" class="form-label" data-i18n="full_name">{{ __('messages.full_name') }}</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-end-0">
+                                                    <i class="bi bi-person text-muted"></i>
+                                                </span>
