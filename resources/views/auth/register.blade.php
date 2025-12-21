@@ -54,3 +54,10 @@
                                                        value="{{ old('name') }}"
                                                        placeholder="{{ __('messages.name_placeholder') }}" data-i18n="name_placeholder"
                                                        required>
+                                            </div>
+                                            @error('name')
+                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-3">
