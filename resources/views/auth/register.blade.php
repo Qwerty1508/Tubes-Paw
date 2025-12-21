@@ -194,3 +194,10 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
+                                            <div class="glass-effect rounded-3 p-3 text-center">
+                                                <i class="bi bi-star fs-2 mb-2 d-block" style="color: #C89B3A;"></i>
+                                                <small data-i18n="reward_points">{{ __('messages.reward_points') }}</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="glass-effect rounded-3 p-3 text-center">
