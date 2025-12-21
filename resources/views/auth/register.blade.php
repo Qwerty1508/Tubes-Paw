@@ -165,3 +165,11 @@
                                     </a>
                                 </p>
                             </div>
+
+                        </div>
+                        
+                        <div class="col-lg-6 order-lg-2 order-1 d-none d-lg-block">
+                            <div class="h-100 position-relative" 
+                                 style="background: linear-gradient(135deg, rgba(12, 42, 54, 0.95), rgba(12, 42, 54, 0.85)), 
+                                        url('https://res.cloudinary.com/dh9ysyfit/image/fetch/w_800,h_1000,c_fill,f_auto,q_auto/https://images.unsplash.com/photo-1552566626-52f8b828add9') center/cover;">
+                                <div class="p-5 d-flex flex-column justify-content-center h-100 text-white">
