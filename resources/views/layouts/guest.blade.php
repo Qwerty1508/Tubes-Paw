@@ -117,3 +117,17 @@
                 htmlElement.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
             });
+        }
+        
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar-culinaire');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        });
+    </script>
+    
