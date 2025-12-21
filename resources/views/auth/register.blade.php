@@ -68,3 +68,10 @@
                                                 </span>
                                                 <input type="tel" 
                                                        class="form-control border-start-0 ps-0 @error('phone') is-invalid @enderror" 
+                                                       id="phone" 
+                                                       name="phone" 
+                                                       value="{{ old('phone') }}"
+                                                       placeholder="{{ __('messages.phone_placeholder') }}" data-i18n="phone_placeholder">
+                                            </div>
+                                            @error('phone')
+                                                <div class="invalid-feedback d-block">{{ $message }}</div>
