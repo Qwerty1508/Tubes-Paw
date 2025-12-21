@@ -33,3 +33,10 @@
                                             <i class="bi bi-check-circle-fill fs-5 me-3" style="color: #C89B3A;"></i>
                                             <span data-i18n="login_benefit_3">{{ __('messages.login_benefit_3') }}</span>
                                         </li>
+                                                                                <li class="d-flex align-items-center">
+                                            <i class="bi bi-check-circle-fill fs-5 me-3" style="color: #C89B3A;"></i>
+                                            <span data-i18n="login_benefit_4">{{ __('messages.login_benefit_4') }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
