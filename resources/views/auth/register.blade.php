@@ -82,3 +82,10 @@
                                     <div class="mb-3">
                                         <label for="email" class="form-label" data-i18n="email">{{ __('messages.email') }}</label>
                                         <div class="input-group">
+                                            <span class="input-group-text bg-light border-end-0">
+                                                <i class="bi bi-envelope text-muted"></i>
+                                            </span>
+                                            <input type="email" 
+                                                   class="form-control border-start-0 ps-0 @error('email') is-invalid @enderror" 
+                                                   id="email" 
+                                                   name="email" 
