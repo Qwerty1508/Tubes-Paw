@@ -131,3 +131,10 @@
                                                        id="password_confirmation" 
                                                        name="password_confirmation" 
                                                        placeholder="{{ __('messages.password_repeat_placeholder') }}" data-i18n="password_repeat_placeholder"
+                                                       required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <div class="form-check">
