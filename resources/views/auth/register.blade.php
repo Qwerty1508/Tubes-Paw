@@ -110,3 +110,10 @@
                                                        id="password" 
                                                        name="password" 
                                                        placeholder="{{ __('messages.password_min_placeholder') }}" data-i18n="password_min_placeholder"
+                                                       required>
+                                                <button class="input-group-text bg-light border-start-0" type="button" id="togglePassword">
+                                                    <i class="bi bi-eye text-muted"></i>
+                                                </button>
+                                            </div>
+                                            @error('password')
+                                                <div class="invalid-feedback d-block">{{ $message }}</div>
