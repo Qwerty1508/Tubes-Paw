@@ -103,3 +103,10 @@
                                     <div class="mb-4">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             <label for="password" class="form-label mb-0" data-i18n="password">{{ __('messages.password') }}</label>
+                                            <a href="{{ Route::has('password.request') ? route('password.request') : '#' }}" class="small text-primary" data-i18n="forgot_password">
+                                                {{ __('messages.forgot_password') }}
+                                            </a>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light border-end-0">
+                                                <i class="bi bi-lock text-muted"></i>
