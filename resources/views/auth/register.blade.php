@@ -89,3 +89,10 @@
                                                    class="form-control border-start-0 ps-0 @error('email') is-invalid @enderror" 
                                                    id="email" 
                                                    name="email" 
+                                                   value="{{ old('email') }}"
+                                                   placeholder="{{ __('messages.email_placeholder') }}" data-i18n="email_placeholder"
+                                                   required>
+                                        </div>
+                                        @error('email')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
