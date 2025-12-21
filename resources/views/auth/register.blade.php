@@ -158,4 +158,10 @@
                                         <i class="bi bi-person-plus me-2"></i><span data-i18n="register_now">{{ __('messages.register_now') }}</span>
                                     </button>
                                 </form>
-                                
+                                <p class="text-center text-muted mb-0">
+                                    <span data-i18n="already_have_account">{{ __('messages.already_have_account') }}</span> 
+                                    <a href="{{ route('login') ?? url('/login') }}" class="text-primary fw-semibold" data-i18n="login">
+                                        {{ __('messages.login') }}
+                                    </a>
+                                </p>
+                            </div>
