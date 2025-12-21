@@ -75,3 +75,10 @@
                                         {{ session('error') }}
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                     </div>
+                                @endif
+                                
+                                <form method="POST" action="{{ route('login.post') }}">
+                                    @csrf
+                                    
+                                    <div class="mb-4">
+                                        <label for="email" class="form-label" data-i18n="email">{{ __('messages.email') }}</label>
