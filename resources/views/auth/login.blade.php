@@ -68,3 +68,10 @@
                                     <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small" data-i18n="login_with_email">
                                         {{ __('messages.login_with_email') }}
                                     </span>
+                                </div>
+                                
+                                @if(session('error'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ session('error') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
