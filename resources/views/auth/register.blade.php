@@ -229,3 +229,8 @@
             
             const icon = this.querySelector('i');
             icon.classList.toggle('bi-eye');
+            icon.classList.toggle('bi-eye-slash');
+        });
+    }
+</script>
+@endpush
