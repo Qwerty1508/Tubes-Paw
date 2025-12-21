@@ -138,3 +138,10 @@
                                     <button type="submit" class="btn btn-primary w-100 py-3 mb-4">
                                         <i class="bi bi-box-arrow-in-right me-2"></i><span data-i18n="login">{{ __('messages.login') }}</span>
                                     </button>
+                                </form>
+                                
+                                <p class="text-center text-muted mb-0">
+                                    <span data-i18n="dont_have_account">{{ __('messages.dont_have_account') }}</span>
+                                    <a href="{{ route('register') ?? url('/register') }}" class="text-primary fw-semibold" data-i18n="register_now">
+                                        {{ __('messages.register_now') }}
+                                    </a>
