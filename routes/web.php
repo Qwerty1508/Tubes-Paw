@@ -1,3 +1,5 @@
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->middleware('auth');
+use App\Http\Controllers\AdminController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+});
