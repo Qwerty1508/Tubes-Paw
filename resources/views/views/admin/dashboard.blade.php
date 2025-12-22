@@ -50,6 +50,7 @@
             </div>
         </div>
 
+        <!-- Statistik Bisnis Tambahan -->
         <div class="row g-4 mb-4">
             <div class="col-md-3">
                 <div class="card h-100 p-4 border-start border-4 border-success">
@@ -97,6 +98,124 @@
             </div>
         </div>
 
+        <!-- Statistik Tambahan (Langkah 256) -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card h-100 p-4 border-start border-4 border-primary">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-muted">Pendapatan Bulan Ini</small>
+                            <h4 class="mb-0 text-primary">Rp {{ number_format($monthRevenue ?? 0, 0, ',', '.') }}</h4>
+                        </div>
+                        <i class="bi bi-graph-up-arrow fs-1 text-primary opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 p-4 border-start border-4 border-warning">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-muted">Pesanan Pending</small>
+                            <h4 class="mb-0 text-warning">{{ $pendingOrders ?? 0 }}</h4>
+                        </div>
+                        <i class="bi bi-clock-history fs-1 text-warning opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 p-4 border-start border-4 border-info">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-muted">Total Pesanan</small>
+                            <h4 class="mb-0 text-info">{{ $totalOrders ?? 0 }}</h4>
+                        </div>
+                        <i class="bi bi-bag-check fs-1 text-info opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div> <!-- Kolom ke-4 kosong (sesuai desain) -->
+        </div>
+
+        <!-- Tautan Cepat (Langkah 259–260) -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <a href="/admin/menus" class="card text-decoration-none h-100 p-4 text-center hover-shadow">
+                    <i class="bi bi-book-half fs-1 text-primary mb-2"></i>
+                    <h6 data-i18n="manage_menus">{{ __('messages.manage_menus') }}</h6>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/orders" class="card text-decoration-none h-100 p-4 text-center hover-shadow">
+                    <i class="bi bi-bag fs-1 text-success mb-2"></i>
+                    <h6>Kelola Pesanan</h6>
+                    @if(($pendingOrders ?? 0) > 0)
+                    <span class="badge bg-danger">{{ $pendingOrders }} pending</span>
+                    @endif
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/reservations" class="card text-decoration-none h-100 p-4 text-center hover-shadow">
+                    <i class="bi bi-calendar-check fs-1 text-info mb-2"></i>
+                    <h6 data-i18n="manage_reservations">{{ __('messages.manage_reservations') }}</h6>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/users" class="card text-decoration-none h-100 p-4 text-center hover-shadow">
+                    <i class="bi bi-people fs-1 text-warning mb-2"></i>
+                    <h6 data-i18n="manage_users">{{ __('messages.manage_users') }}</h6>
+                </a>
+            </div>
+        </div>
+
+        <!-- Daftar Aktivitas Terbaru -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <div class="card p-4 h-100">
+                    <h5 class="mb-4">Pesanan Terbaru</h5>
+                    @if($recentOrders->isEmpty())
+                        <p class="text-center text-muted mb-0">Tidak ada pesanan baru</p>
+                    @else
+                        <div class="list-group">
+                            @foreach($recentOrders as $order)
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>#{{ $order->order_number }}</strong><br>
+                                        <small class="text-muted">{{ $order->user->name ?? 'Guest' }}</small>
+                                    </div>
+                                    <span class="badge {{ $order->status === 'pending' ? 'bg-warning' : ($order->status === 'completed' ? 'bg-success' : 'bg-secondary') }}">
+                                        {{ $order->status }}
+                                    </span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 h-100">
+                    <h5 class="mb-4">Reservasi Terbaru</h5>
+                    @if($recentReservations->isEmpty())
+                        <p class="text-center text-muted mb-0">Tidak ada reservasi baru</p>
+                    @else
+                        <div class="list-group">
+                            @foreach($recentReservations as $reservation)
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>{{ $reservation->name }}</strong><br>
+                                        <small class="text-muted">{{ $reservation->date }} • {{ $reservation->time }}</small>
+                                    </div>
+                                    <span class="badge {{ $reservation->status === 'pending' ? 'bg-warning' : ($reservation->status === 'accepted' ? 'bg-success' : 'bg-danger') }}">
+                                        {{ $reservation->status }}
+                                    </span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabel Aktivitas (sudah ada di kode awal, dipertahankan) -->
         <div class="row g-4">
             <div class="col-12">
                 <div class="card p-4">
