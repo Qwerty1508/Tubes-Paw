@@ -37,57 +37,66 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if($menus->count() > 0)
-                                @foreach($menus as $menu)
-                                    <tr>
-                                        <td>
-                                            @if($menu->image_url)
-                                                <img src="{{ asset('storage/' . $menu->image_url) }}" alt="{{ $menu->name }}" class="img-thumbnail" width="50">
-                                            @else
-                                                <i class="bi bi-image text-muted fs-4"></i>
-                                            @endif
-                                        </td>
-                                        <td>{{ $menu->name }}</td>
-                                        <td>{{ $menu->category }}</td>
-                                        <td>Rp {{ number_format($menu->price, 0, ',', '.') }}</td>
-                                        <td>
-                                            @if($menu->is_available)
-                                                <span class="badge bg-success">Tersedia</span>
-                                            @else
-                                                <span class="badge bg-danger">Tidak Tersedia</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="/admin/menus/{{ $menu->id }}/edit" class="btn btn-sm btn-warning me-1">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                            <form action="/admin/menus/{{ $menu->id }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus menu ini?')">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
+                            @forelse($menus as $menu)
                                 <tr>
-                                    <td colspan="6" class="text-center text-muted py-4">
-                                        <i class="bi bi-inbox fs-1"></i>
-                                        <p class="mb-0">{{ __('messages.no_menus') }}</p>
+                                    <td>
+                                        @if($menu->image_url)
+                                            <img src="{{ $menu->image_url }}" alt="{{ $menu->name }}" 
+                                                 class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
+                                        @else
+                                            <div class="bg-light rounded d-flex align-items-center justify-content-center" 
+                                                 style="width: 60px; height: 60px;">
+                                                <i class="bi bi-image text-muted"></i>
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <strong>{{ $menu->name }}</strong>
+                                        @if($menu->description)
+                                            <br><small class="text-muted">{{ Str::limit($menu->description, 50) }}</small>
+                                        @endif
+                                    </td>
+                                    <td><span class="badge bg-secondary">{{ $menu->category }}</span></td>
+                                    <td><strong>Rp {{ number_format($menu->price, 0, ',', '.') }}</strong></td>
+                                    <td>
+                                        @if($menu->is_available)
+                                            <span class="badge bg-success">{{ __('messages.status_available') }}</span>
+                                        @else
+                                            <span class="badge bg-danger">{{ __('messages.status_out_of_stock') }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="/admin/menus/{{ $menu->slug }}/edit" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <form action="/admin/menus/{{ $menu->slug }}" method="POST" class="d-inline" 
+                                              onsubmit="return confirm('{{ __('messages.delete_confirm') }}')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
-                            @endif
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-5">
+                                        <i class="bi bi-inbox fs-1 text-muted"></i>
+                                        <p class="text-muted mb-0">{{ __('messages.no_menu_list') }}</p>
+                                        <a href="/admin/menus/create" class="btn btn-primary mt-3">{{ __('messages.add_first_menu') }}</a>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
-                @if($menus->count() > 0)
-                    <div class="card-footer bg-white">
-                        {{ $menus->links() }}
-                    </div>
-                @endif
             </div>
+        </div>
+        <div class="mt-4">
+            <a href="/admin/dashboard" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-2"></i>{{ __('messages.back_dashboard') }}
+            </a>
         </div>
     </div>
 </section>
