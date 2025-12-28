@@ -47,33 +47,95 @@
                                         <option value="Makanan" {{ old('category') == 'Makanan' ? 'selected' : '' }}>Makanan</option>
                                         <option value="Minuman" {{ old('category') == 'Minuman' ? 'selected' : '' }}>Minuman</option>
                                         <option value="Dessert" {{ old('category') == 'Dessert' ? 'selected' : '' }}>Dessert</option>
-                                        <option value="Paket" {{ old('category') == 'Paket' ? 'selected' : '' }}>Paket</option>
+                                        <option value="Appetizer" {{ old('category') == 'Appetizer' ? 'selected' : '' }}>Appetizer</option>
                                     </select>
                                     @error('category')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
+                            
+                            <!-- Gambar Menu dengan Tab -->
                             <div class="mb-3">
-                                <label for="image" class="form-label">Gambar Menu</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror" 
-                                       id="image" name="image" accept="image/*">
-                                @error('image')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                <div class="form-text">Format: JPG, PNG, GIF (max 2MB)</div>
+                                <label class="form-label">Gambar Menu</label>
+                                <ul class="nav nav-tabs" id="imageTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="upload-tab" data-bs-toggle="tab" 
+                                                data-bs-target="#upload" type="button">
+                                            <i class="bi bi-cloud-upload me-1"></i>Upload File
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="url-tab" data-bs-toggle="tab" 
+                                                data-bs-target="#url" type="button">
+                                            <i class="bi bi-link-45deg me-1"></i>URL Gambar
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content border border-top-0 p-3 rounded-bottom" id="imageTabContent">
+                                    <div class="tab-pane fade show active" id="upload" role="tabpanel">
+                                        <input type="file" class="form-control" id="image_file_input" accept="image/*">
+                                        <input type="hidden" name="image_url" id="uploaded_image_url">
+                                        <div class="mt-3 p-3 bg-light rounded">
+                                            <label class="form-label fw-semibold mb-2">
+                                                <i class="bi bi-sliders me-1"></i>Mode Upload:
+                                            </label>
+                                            <div class="d-flex gap-2 flex-wrap">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="uploadMode" id="modeOriginal" value="original" checked>
+                                                    <label class="form-check-label" for="modeOriginal">
+                                                        <strong>🖼️ Original</strong>
+                                                        <small class="text-muted d-block">Resolusi & ukuran asli (upload lebih lama)</small>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="uploadMode" id="modeCompressed" value="compressed">
+                                                    <label class="form-check-label" for="modeCompressed">
+                                                        <strong>⚡ Cepat</strong>
+                                                        <small class="text-muted d-block">Kompres 98% (upload 5x lebih cepat)</small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="uploadProgressContainer" class="mt-2"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="url" role="tabpanel">
+                                        <input type="url" class="form-control @error('image_url') is-invalid @enderror" 
+                                               id="image_url_manual" name="image_url" 
+                                               placeholder="https://images.unsplash.com/photo-xxx" 
+                                               value="{{ old('image_url') }}">
+                                        <small class="text-muted">
+                                            <i class="bi bi-info-circle me-1"></i>
+                                            Gunakan URL dari Unsplash atau sumber publik lainnya.
+                                        </small>
+                                        @error('image_url')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="is_available" name="is_available" checked>
-                                <label class="form-check-label" for="is_available">Tersedia</label>
+
+                            <!-- Preview Gambar -->
+                            <div class="mb-3" id="imagePreviewContainer" style="display: none;">
+                                <label class="form-label">Preview Gambar</label>
+                                <div class="border rounded p-2">
+                                    <img id="imagePreview" src="" alt="Preview" class="img-fluid rounded" style="max-height: 200px;">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_available" name="is_available" value="1" checked>
+                                    <label class="form-check-label" for="is_available">
+                                        Menu tersedia
+                                    </label>
+                                </div>
                             </div>
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-save me-2"></i>Simpan Menu
+                                    <i class="bi bi-check-lg me-2"></i>Simpan Menu
                                 </button>
-                                <a href="/admin/menus" class="btn btn-secondary">
-                                    <i class="bi bi-x-circle me-2"></i>Batal
-                                </a>
+                                <a href="/admin/menus" class="btn btn-outline-secondary">Batal</a>
                             </div>
                         </form>
                     </div>
@@ -97,4 +159,78 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+<script>
+(function() {
+    const fileInput = document.getElementById('image_file_input');
+    const urlInput = document.getElementById('uploaded_image_url');
+    const manualUrlInput = document.getElementById('image_url_manual');
+    const form = document.querySelector('form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    let isUploading = false;
+
+    // Preview gambar dari file
+    fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        // Validasi ukuran file (10MB max)
+        if (file.size > 10 * 1024 * 1024) {
+            alert('Ukuran file maksimal 10MB');
+            fileInput.value = '';
+            return;
+        }
+
+        // Tampilkan preview
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('imagePreview').src = e.target.result;
+            document.getElementById('imagePreviewContainer').style.display = 'block';
+            // Kosongkan input URL saat upload file
+            manualUrlInput.value = '';
+            urlInput.value = '';
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // Preview gambar dari URL
+    manualUrlInput.addEventListener('input', function(e) {
+        const url = e.target.value;
+        if (url) {
+            document.getElementById('imagePreview').src = url;
+            document.getElementById('imagePreviewContainer').style.display = 'block';
+            // Kosongkan hidden input
+            urlInput.value = '';
+        } else {
+            document.getElementById('imagePreviewContainer').style.display = 'none';
+        }
+    });
+
+    // Submit form
+    form.addEventListener('submit', function(e) {
+        const isUploadTabActive = document.getElementById('upload').classList.contains('show');
+        const isUrlTabActive = document.getElementById('url').classList.contains('show');
+        
+        if (isUploadTabActive) {
+            const file = fileInput.files[0];
+            if (file) {
+                // Simulasi upload
+                e.preventDefault();
+                alert('Simulasi: Gambar akan diupload ke server.\n\nDi implementasi nyata, ini akan menyimpan ke Cloudinary.');
+                
+                // Set URL dummy untuk demo
+                const reader = new FileReader();
+                reader.onload = function() {
+                    urlInput.value = reader.result;
+                    form.submit();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        // Jika tab URL aktif, form akan submit seperti biasa
+    });
+})();
+</script>
+@endpush
 @endsection
