@@ -30,6 +30,20 @@ public function store(Request $request)
     if ($request->hasFile('image')) {
         $path = $request->file('image')->store('menus', 'public');
         $menu->image_url = $path;
+        // Di MenuController.php
+public function update(Request $request, Menu $menu)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric|min:0',
+        'category' => 'required|in:Makanan,Minuman,Dessert,Appetizer',
+        'image_url' => 'nullable|string', // Bisa data URL atau URL biasa
+        'is_available' => 'boolean'
+    ]);
+
+    $menu->update($request->except(['_token', '_method']));
+    return redirect()->route('admin.menus.index')->with('success', 'Menu diperbarui!');
+}
     }
 
     $menu->save();
