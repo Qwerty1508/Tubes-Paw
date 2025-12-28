@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', __('messages.manage_menus'))
+@section('title', 'Daftar Users')
 @section('content')
 <section class="section bg-cream">
     <div class="container">
@@ -7,12 +7,9 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h3 class="mb-1">{{ __('messages.manage_menus') }}</h3>
-                        <p class="text-muted mb-0">{{ __('messages.manage_menus_desc') }}</p>
+                        <h3 class="mb-1">Daftar Users</h3>
+                        <p class="text-muted mb-0">Kelola semua pengguna yang terdaftar</p>
                     </div>
-                    <a href="/admin/menus/create" class="btn btn-primary">
-                        <i class="bi bi-plus-circle me-2"></i>{{ __('messages.add_menu') }}
-                    </a>
                 </div>
             </div>
         </div>
@@ -22,81 +19,139 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card text-center p-3">
+                    <h4 class="mb-0">{{ $totalCount ?? 0 }}</h4>
+                    <small class="text-muted">Total Users</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3">
+                    <h4 class="mb-0 text-success">{{ $todayCount ?? 0 }}</h4>
+                    <small class="text-muted">Registrasi Hari Ini</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3">
+                    <h4 class="mb-0 text-info">{{ $last30DaysCount ?? 0 }}</h4>
+                    <small class="text-muted">30 Hari Terakhir</small>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex gap-2">
+                    <a href="/admin/users?filter=all" 
+                       class="btn {{ request('filter') == 'all' || !request('filter') ? 'btn-primary' : 'btn-outline-primary' }}">
+                        Semua
+                    </a>
+                    <a href="/admin/users?filter=today" 
+                       class="btn {{ request('filter') == 'today' ? 'btn-success' : 'btn-outline-success' }}">
+                        Hari Ini
+                    </a>
+                    <a href="/admin/users?filter=30days" 
+                       class="btn {{ request('filter') == '30days' ? 'btn-info' : 'btn-outline-info' }}">
+                        30 Hari Terakhir
+                    </a>
+                </div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>{{ __('messages.menu_image') }}</th>
-                                <th>{{ __('messages.menu_name') }}</th>
-                                <th>{{ __('messages.menu_category') }}</th>
-                                <th>{{ __('messages.menu_price') }}</th>
-                                <th>{{ __('messages.menu_status') }}</th>
-                                <th class="text-end">{{ __('messages.menu_action') }}</th>
+                                <th>#</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Metode Login</th>
+                                <th>Status</th>
+                                <th>Tanggal Daftar</th>
+                                <th class="text-end">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($menus as $menu)
+                            @forelse($users as $user)
                                 <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td><strong>{{ $user->name }}</strong></td>
+                                    <td>{{ $user->email }}</td>
                                     <td>
-                                        @if($menu->image_url)
-                                            <img src="{{ $menu->image_url }}" alt="{{ $menu->name }}" 
-                                                 class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
+                                        @if($user->google_id)
+                                            <span class="badge bg-danger"><i class="bi bi-google me-1"></i>Google</span>
                                         @else
-                                            <div class="bg-light rounded d-flex align-items-center justify-content-center" 
-                                                 style="width: 60px; height: 60px;">
-                                                <i class="bi bi-image text-muted"></i>
-                                            </div>
+                                            <span class="badge bg-secondary"><i class="bi bi-envelope me-1"></i>Email</span>
                                         @endif
                                     </td>
                                     <td>
-                                        <strong>{{ $menu->name }}</strong>
-                                        @if($menu->description)
-                                            <br><small class="text-muted">{{ Str::limit($menu->description, 50) }}</small>
-                                        @endif
-                                    </td>
-                                    <td><span class="badge bg-secondary">{{ $menu->category }}</span></td>
-                                    <td><strong>Rp {{ number_format($menu->price, 0, ',', '.') }}</strong></td>
-                                    <td>
-                                        @if($menu->is_available)
-                                            <span class="badge bg-success">{{ __('messages.status_available') }}</span>
+                                        @if($user->status == 'blocked')
+                                            <span class="badge bg-danger">Blocked</span>
+                                        @elseif($user->status == 'suspended')
+                                            <span class="badge bg-warning text-dark">Suspended</span>
                                         @else
-                                            <span class="badge bg-danger">{{ __('messages.status_out_of_stock') }}</span>
+                                            <span class="badge bg-success">Active</span>
                                         @endif
                                     </td>
+                                    <td>{{ $user->created_at->format('d M Y, H:i') }}</td>
                                     <td class="text-end">
-                                        <a href="/admin/menus/{{ $menu->slug }}/edit" class="btn btn-sm btn-outline-primary">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <form action="/admin/menus/{{ $menu->slug }}" method="POST" class="d-inline" 
-                                              onsubmit="return confirm('{{ __('messages.delete_confirm') }}')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                <i class="bi bi-trash"></i>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                Ubah Status
                                             </button>
-                                        </form>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <form action="/admin/users/{{ $user->id }}/status" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="active">
+                                                        <button type="submit" class="dropdown-item text-success" {{ $user->status == 'active' ? 'disabled' : '' }}>
+                                                            <i class="bi bi-check-circle me-2"></i>Active
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                                <li>
+                                                    <form action="/admin/users/{{ $user->id }}/status" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="suspended">
+                                                        <button type="submit" class="dropdown-item text-warning" {{ $user->status == 'suspended' ? 'disabled' : '' }}>
+                                                            <i class="bi bi-exclamation-triangle me-2"></i>Suspend
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                                <li>
+                                                    <form action="/admin/users/{{ $user->id }}/status" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="blocked">
+                                                        <button type="submit" class="dropdown-item text-danger" {{ $user->status == 'blocked' ? 'disabled' : '' }}>
+                                                            <i class="bi bi-x-circle me-2"></i>Block
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center py-5">
+                                    <td colspan="7" class="text-center py-5">
                                         <i class="bi bi-inbox fs-1 text-muted"></i>
-                                        <p class="text-muted mb-0">{{ __('messages.no_menu_list') }}</p>
-                                        <a href="/admin/menus/create" class="btn btn-primary mt-3">{{ __('messages.add_first_menu') }}</a>
+                                        <p class="text-muted mb-0">Tidak ada pengguna ditemukan</p>
                                     </td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
+                @if($users->hasPages())
+                    <div class="card-footer bg-white d-flex justify-content-end">
+                        {{ $users->appends(request()->query())->links() }}
+                    </div>
+                @endif
             </div>
-        </div>
-        <div class="mt-4">
-            <a href="/admin/dashboard" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left me-2"></i>{{ __('messages.back_dashboard') }}
-            </a>
         </div>
     </div>
 </section>
